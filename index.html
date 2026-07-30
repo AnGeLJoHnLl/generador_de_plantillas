@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Generador de plantillas</title>
+  <meta name="description" content="Generador de plantillas de tickets HITSS Mesa Multiskill." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ═══ HEADER ═══ -->
+  <header class="app-header">
+    <div class="header-inner">
+      <div class="logo-group">
+        <div class="logo-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+            <polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 8 9"/>
+          </svg>
+        </div>
+        <div class="app-title">Generador de plantillas</div>
+      </div>
+      <div class="header-badge">Mesa Multiskill HITSS</div>
+    </div>
+  </header>
+
+  <!-- ═══ QUICK LINKS BAR ═══ -->
+  <div class="quick-links-bar">
+    <div class="ql-items">
+      <!-- Copiar al portapapeles -->
+      <button class="ql-btn" id="ql-148"
+              onclick="quickCopy(this, 'https://claro360.com/plataforma360/Peru/soporte_remoto')"
+              title="Soporte Remoto Claro360 — Clic para COPIAR link">
+        <span class="ql-num">148</span>
+      </button>
+
+      <!-- Abrir directo en nueva pestaña -->
+      <a href="https://claro360.com/plataforma360/login" target="_blank" rel="noopener noreferrer" class="ql-btn ql-link" title="Abrir 360">
+        <span class="ql-num">360</span>
+      </a>
+
+      <a href="https://claro.laraigo.com/message_inbox" target="_blank" rel="noopener noreferrer" class="ql-btn ql-link" title="Abrir Laraigo">
+        <span class="ql-num">LARAIGO</span>
+      </a>
+
+      <a href="https://amx-peru.fs.ocs.oraclecloud.com/" target="_blank" rel="noopener noreferrer" class="ql-btn ql-link" title="Abrir TOA">
+        <span class="ql-num">TOA</span>
+      </a>
+
+      <a href="http://172.17.51.6/sac/Login_input" target="_blank" rel="noopener noreferrer" class="ql-btn ql-link" title="Abrir Incognito">
+        <span class="ql-num">INCOGNITO</span>
+      </a>
+
+      <a href="http://prov.incognito.claro.com.pe/sac/" target="_blank" rel="noopener noreferrer" class="ql-btn ql-link" title="Abrir Incognito Prov">
+        <span class="ql-num">INCOGNITO PROV</span>
+      </a>
+
+      <a href="https://10.189.8.188:28090/service-cloud/aicc-web/index/index.html#/ManualAppointWorkbenchDetails?taskId=1061244585&orgId=1752727161880235604&appointId=175435461525835224677465120200&eventType=AgentEvent_Customer_Release&updateCallId=1754354624-11840&isFirst=true&AgentEvent_Call_Out_Fail=true" target="_blank" rel="noopener noreferrer" class="ql-btn ql-link" title="Abrir AICC">
+        <span class="ql-num">AICC</span>
+      </a>
+
+      <a href="https://maps.geodir.co/bravo-maps" target="_blank" rel="noopener noreferrer" class="ql-btn ql-link" title="Abrir Geodir">
+        <span class="ql-num">GEODIR</span>
+      </a>
+
+      <a href="https://172.19.90.243/portalfactibilidad/public/login" target="_blank" rel="noopener noreferrer" class="ql-btn ql-link" title="Abrir Portal de Factibilidad">
+        <span class="ql-num">FACTIBILIDAD</span>
+      </a>
+
+      <a href="https://gamma.central.plume.com/" target="_blank" rel="noopener noreferrer" class="ql-btn ql-link" title="Abrir Plume">
+        <span class="ql-num">PLUME</span>
+      </a>
+
+      <a href="https://www.skywayplatform.com/skyway-platform/login?tenantCode=1086&backUrl=%252Ftms%252Fmanagement%252Fdevice%253Fsn%253DZTEATV45502943796" target="_blank" rel="noopener noreferrer" class="ql-btn ql-link" title="Abrir Skyway">
+        <span class="ql-num">SKYWAY</span>
+      </a>
+
+      <a href="https://jsystem2018.github.io/Verificador-nivel/" target="_blank" rel="noopener noreferrer" class="ql-btn ql-link" title="Abrir Multigestión">
+        <span class="ql-num">MULTIGESTION</span>
+      </a>
+
+      <a href="http://prov.incognito.claro.com.pe/portalRestSac/CMTS/CMTS_INDEX.html" target="_blank" rel="noopener noreferrer" class="ql-btn ql-link" title="Abrir Alinear CMTS">
+        <span class="ql-num">ALINEAR CMTS</span>
+      </a>
+
+      <a href="https://gestorsisef.claro.pe/ords/r/ws_srvfija/srvfija/control-planos?session=22785531277179" target="_blank" rel="noopener noreferrer" class="ql-btn ql-link" title="Abrir SISEF">
+        <span class="ql-num">SISEF</span>
+      </a>
+
+      <a href="https://host.globalhitss.com/" target="_blank" rel="noopener noreferrer" class="ql-btn ql-link" title="Abrir HOST">
+        <span class="ql-num">HOST</span>
+      </a>
+    </div>
+
+    <!-- Cuentas & Passwords Desplegable -->
+    <div class="cuentas-wrap">
+      <button type="button" class="btn-cuentas" onclick="toggleCuentasPanel()" title="Cuentas y Contraseñas">
+        Cuentas & Pass ▾
+      </button>
+      <div id="cuentasDropdown" class="cuentas-dropdown hidden">
+        <div class="cuentas-header">
+          <span>Cuentas & Contraseñas</span>
+          <button type="button" class="btn-close-sm" onclick="toggleCuentasPanel()">✕</button>
+        </div>
+        <div class="cuentas-body" id="cuentasList"></div>
+      </div>
+    </div>
+
+    <span class="ql-feedback hidden" id="qlFeedback">Copiado</span>
+  </div>
+
+  <!-- ═══ WRAPPER ═══ -->
+  <div class="app-wrapper">
+
+    <!-- ── SIDEBAR ── -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-top">
+        <span class="sidebar-title">Secciones</span>
+        <button class="btn-nueva-sec" onclick="nuevaSeccion()" title="Nueva sección">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+          </svg>
+          Nueva
+        </button>
+      </div>
+      <div id="sectionsList" class="sections-list"></div>
+    </aside>
+
+    <!-- ── MAIN ── -->
+    <main class="main-content" id="mainContent">
+
+      <!-- Topbar -->
+      <div class="section-topbar" id="sectionTopbar">
+        <div class="sort-group">
+          <span class="sort-label">SOT:</span>
+          <input type="number" id="seccionNumero" class="sort-input" min="1" max="999" value="1"
+                 onchange="actualizarNumero(this.value)" />
+        </div>
+        <div class="sec-tipo-badge" id="seccionTipoBadge">Sin gestión</div>
+        <div class="topbar-spacer"></div>
+        <button class="btn-del-icon" onclick="confirmarEliminarSeccion()" title="Eliminar sección">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/>
+            <path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4a1 1 0 011-1h4a1 1 0 011 1v2"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Grid -->
+      <div class="content-grid">
+
+        <!-- ┌── FORMULARIO ──┐ -->
+        <section class="panel panel-form">
+          <div class="panel-header">
+            <h2>Datos de la Gestión</h2>
+          </div>
+
+          <form id="ticketForm" autocomplete="off" onsubmit="return false;">
+
+            <!-- TIPO GESTIÓN -->
+            <div class="field-group">
+              <label class="field-label" for="tipoGestion">Tipo de Gestión</label>
+              <div class="sel-wrap">
+                <select id="tipoGestion" onchange="onTipoChange()">
+                  <option value="">— Selecciona una gestión —</option>
+                  <optgroup label="Activaciones">
+                    <option value="activacion">Activación</option>
+                    <option value="migracion">Migración</option>
+                    <option value="cambio_plan">Cambio de Plan</option>
+                    <option value="traslado_externo">Traslado Externo</option>
+                    <option value="reenvio_senal">Reenvío de Señal</option>
+                    <option value="activacion_mesh">Activación Mesh</option>
+                  </optgroup>
+                  <optgroup label="Equipos">
+                    <option value="codigo_autorizacion">Código Autorización</option>
+                    <option value="cambio_equipo">Cambio de Equipo</option>
+                  </optgroup>
+                  <optgroup label="Mantenimiento">
+                    <option value="sot_mantto">SOT DE MANTO</option>
+                    <option value="cambio_plano">Cambio de Plano</option>
+                  </optgroup>
+                  <optgroup label="Rechazos Técnicos">
+                    <option value="rechazo_tecnico">Rechazo Técnico</option>
+                  </optgroup>
+                  <optgroup label="Consultas">
+                    <option value="cintillos_ftth">Consulta Cintillos FTTH</option>
+                    <option value="cintillos_hfc">Consulta Cintillos HFC</option>
+                  </optgroup>
+                  <optgroup label="Derivaciones PEXT">
+                    <option value="derivacion_pext_hfc">Derivación PEXT HFC</option>
+                    <option value="derivacion_pext_ftth">Derivación PEXT FTTH</option>
+                  </optgroup>
+                </select>
+                <span class="sel-arrow">▾</span>
+              </div>
+            </div>
+
+            <!-- N° TICKET (siempre visible) -->
+            <div class="field-group" id="bloqueNTicket">
+              <label class="field-label" for="nTicket">N° de Ticket</label>
+              <input type="text" id="nTicket" placeholder="Ej. 123456789" />
+            </div>
+
+            <!-- ═══ BLOQUES ESTÁNDAR ═══ -->
+
+            <!-- Equipo Principal (no-mesh) -->
+            <div id="bloqueEquipoPrincipal" class="eq-block main-eq hidden">
+              <div class="block-row">
+                <span class="blk-label" id="equipoPrincipalLabel">EQUIPO ACTIVADO</span>
+              </div>
+              <div class="field-group inner">
+                <label class="field-label">Tecnología</label>
+                <div class="tech-btns">
+                  <button type="button" class="tech-btn" data-tech="hfc" onclick="setTech('hfc')">HFC EMTA</button>
+                  <button type="button" class="tech-btn" data-tech="ftth" onclick="setTech('ftth')">FTTH ONT</button>
+                </div>
+              </div>
+              <div class="field-group inner">
+                <label class="field-label" id="labelEquipoActivado">Equipo Activado</label>
+                <input type="text" id="equipoActivado" placeholder="Ej. MODEM HFC / ONT FTTH" />
+              </div>
+              <div class="field-group inner">
+                <label class="field-label">Modelo</label>
+                <div class="sel-wrap">
+                  <select id="modeloEquipo" onchange="onModeloChange()">
+                    <option value="">— Selecciona tecnología primero —</option>
+                  </select>
+                  <span class="sel-arrow">▾</span>
+                </div>
+                <input type="text" id="modeloManual" class="hidden"
+                       placeholder="Escribe el modelo manualmente…"
+                       style="margin-top:0.4rem" autocomplete="off" />
+              </div>
+            </div>
+
+            <!-- Repetidor (solo Mesh) -->
+            <div id="bloqueRepetidor" class="eq-block mesh-eq hidden">
+              <div class="block-row">
+                <span class="blk-label mesh-lbl">REPETIDOR ACTIVADO</span>
+              </div>
+              <div class="field-group inner">
+                <label class="field-label">Repetidor Activado</label>
+                <input type="text" id="repetidorActivado" placeholder="Ej. TP-Link Deco M5" />
+              </div>
+              <div class="field-group inner">
+                <label class="field-label">Modelo</label>
+                <input type="text" id="modeloRepetidor" placeholder="Ej. Deco M5 (3-pack)" />
+              </div>
+            </div>
+
+            <!-- Equipos adicionales -->
+            <div id="equiposAdicionales"></div>
+
+            <!-- Botones agregar -->
+            <div id="botonesAgregar" class="add-btns hidden">
+              <p class="add-btns-lbl">Agregar sección adicional</p>
+              <div class="add-btns-row">
+                <button type="button" class="btn-add" onclick="agregarEquipoAdicional('deco')">Deco Activado</button>
+                <button type="button" class="btn-add" onclick="agregarEquipoAdicional('repetidor')">Repetidor Activado</button>
+              </div>
+            </div>
+
+            <!-- Estado / Conformidad -->
+            <div id="bloqueEstado" class="field-group hidden">
+              <label class="field-label" id="labelEstado">Estado</label>
+              <div class="sel-wrap">
+                <select id="estado" onchange="onEstadoChange()">
+                  <option value="">— Selecciona opción —</option>
+                  <option value="ATENDIDA">ATENDIDA</option>
+                  <option value="PENDIENTE SE DERIVA A SISTEMAS">PENDIENTE SE DERIVA A SISTEMAS</option>
+                  <option value="DENEGADA">DENEGADA</option>
+                  <option value="__manual__">Escribir manualmente…</option>
+                </select>
+                <span class="sel-arrow">▾</span>
+              </div>
+              <input type="text" id="estadoManual" class="hidden"
+                     placeholder="Escribe el estado manualmente…"
+                     style="margin-top:0.4rem" autocomplete="off" />
+            </div>
+
+            <!-- Observaciones -->
+            <div id="bloqueObs" class="field-group hidden">
+              <label class="field-label" for="observaciones">Observaciones</label>
+              <textarea id="observaciones" rows="3" placeholder="Detalles adicionales, incidencias, notas…"></textarea>
+            </div>
+
+            <!-- ═══ FORM ESPECIAL (renderizado por JS) ═══ -->
+            <div id="customFormArea" class="hidden"></div>
+
+            <!-- Realizado por (siempre visible tras selección) -->
+            <div id="bloqueRealizadoPor" class="field-group hidden">
+              <label class="field-label" for="realizadoPor">Realizado por</label>
+              <input type="text" id="realizadoPor" value="ANGEL LLAMACPONCCA" />
+            </div>
+
+            <!-- Acciones -->
+            <div id="actionRow" class="action-row hidden">
+              <button type="button" class="btn-primary" onclick="generarPlantilla()">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M13 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V9z"/><polyline points="13 2 13 9 20 9"/>
+                </svg>
+                Generar Plantilla
+              </button>
+              <button type="button" class="btn-secondary" onclick="limpiarSeccionActual()">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 102.13-9.36L1 10"/>
+                </svg>
+                Limpiar
+              </button>
+            </div>
+
+          </form>
+        </section>
+
+        <!-- ┌── DERECHA (Organizada en 2 columnas al costado) ──┐ -->
+        <div class="right-panels-grid">
+
+          <!-- Columna 1: Plantilla Generada y Bloc de Notas -->
+          <div class="right-col">
+            <!-- PREVIEW -->
+            <section class="panel panel-preview">
+              <div class="panel-header">
+                <h2>Plantilla Generada</h2>
+                <button class="btn-copy" id="btnCopy" onclick="copiarPlantilla()" disabled>
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                    <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/>
+                  </svg>
+                  Copiar
+                </button>
+              </div>
+              <div id="previewEmpty" class="preview-empty">
+                <p>Completa el formulario y presiona<br/><strong>Generar Plantilla</strong></p>
+              </div>
+              <div id="previewContent" class="preview-content hidden">
+                <pre id="plantillaTexto" class="plantilla-pre"></pre>
+              </div>
+              <div id="copyFeedback" class="copy-feedback hidden">Copiado al portapapeles</div>
+            </section>
+
+            <!-- BLOC DE NOTAS -->
+            <section class="panel panel-notes">
+              <div class="panel-header notes-header">
+                <h2>Bloc de Notas</h2>
+                <span class="notes-hint">Solo uso interno</span>
+              </div>
+              <div class="notes-body">
+                <textarea id="notasTexto" class="notes-ta"
+                          placeholder="Escribe aquí notas, pasos pendientes, datos temporales…"></textarea>
+              </div>
+            </section>
+          </div>
+
+          <!-- Columna 2: Convertidor MAC y Módulo de Señal -->
+          <div class="right-col">
+            <!-- CONVERTIDOR MAC -->
+            <section class="panel panel-mac">
+              <div class="panel-header mac-header">
+                <h2>Convertidor MAC</h2>
+                <span class="mac-hint">12 caracteres → XX:XX:XX:XX:XX:XX</span>
+              </div>
+              <div class="mac-body">
+                <div class="field-group">
+                  <label class="field-label">Serie (12 caracteres hex)</label>
+                  <input type="text" id="macInput" class="mac-input"
+                         maxlength="14" placeholder="Ej. A1B2C3D4E5F6"
+                         oninput="convertirMAC()" autocomplete="off" spellcheck="false" />
+                  <div class="mac-counter" id="macCounter">0 / 12</div>
+                </div>
+                <div class="mac-result-row">
+                  <div class="mac-value-wrap">
+                    <span class="mac-label-sm">MAC Address</span>
+                    <span class="mac-value" id="macValue">—</span>
+                  </div>
+                  <button class="btn-copy-mac" id="btnCopyMAC" onclick="copiarMAC()" disabled>
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                      <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                      <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/>
+                    </svg>
+                    Copiar MAC
+                  </button>
+                </div>
+                <div id="macFeedback" class="mac-feedback hidden">MAC copiada</div>
+              </div>
+            </section>
+
+            <!-- MÓDULO DE SEÑAL -->
+            <section class="panel panel-signal">
+              <div class="panel-header signal-header">
+                <h2>Módulo de Señal</h2>
+                <span class="signal-hint">SNR HFC & Nivel FTTH</span>
+              </div>
+              <div class="signal-body">
+
+                <!-- Sub-bloque 1: EMTA HFC -->
+                <div class="signal-subcard">
+                  <div class="signal-subhead">
+                    <span class="subhead-title">EMTA (HFC - Evaluador SNR)</span>
+                  </div>
+                  <div class="field-group inner">
+                    <label class="field-label">Valores (separados por comas)</label>
+                    <textarea id="valoresSNR" class="signal-ta" rows="2"
+                              placeholder="Ej. 45.0, 45.1, 45.0, 45.1, 45.2"></textarea>
+                  </div>
+                  <div class="signal-btn-row">
+                    <button type="button" class="btn-sm-primary" onclick="evaluarEstabilidad()">Evaluar SNR</button>
+                    <button type="button" class="btn-sm-danger" onclick="limpiarSNR()">Limpiar</button>
+                  </div>
+                  <div id="resultadoSNR" class="signal-result-box">—</div>
+                </div>
+
+                <!-- Sub-bloque 2: Nivel FTTH -->
+                <div class="signal-subcard">
+                  <div class="signal-subhead">
+                    <span class="subhead-title">Nivel FTTH (ONT)</span>
+                  </div>
+                  <div class="field-group inner">
+                    <label class="field-label">Potencia RX (dBm)</label>
+                    <input type="number" step="0.1" id="rxValue" class="signal-input"
+                           placeholder="Ej. -20" onkeyup="if(event.key==='Enter') verificarNivelFTTH()" />
+                  </div>
+                  <div class="signal-btn-row">
+                    <button type="button" class="btn-sm-primary" onclick="verificarNivelFTTH()">Verificar Nivel</button>
+                    <button type="button" class="btn-sm-danger" onclick="limpiarRXFTTH()">Limpiar</button>
+                  </div>
+                  <div id="resultadoRX" class="signal-result-box">—</div>
+                  <div id="barraRX" class="bar-indicator"></div>
+                </div>
+
+              </div>
+            </section>
+          </div>
+
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <footer class="app-footer">
+    <p>Hecho por Angel Llamacponcca</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
