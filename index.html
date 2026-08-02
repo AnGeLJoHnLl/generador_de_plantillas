@@ -9,6 +9,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet" />
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <link rel="stylesheet" href="styles.css" />
+  <!-- FontAwesome & Cropper.js for OCR -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css" />
 </head>
 <body>
 
@@ -365,6 +368,33 @@
                         placeholder="Escribe aquí notas, pasos pendientes, datos temporales…"></textarea>
             </div>
           </section>
+
+          <!-- APARTADO ESCÁNER OCR (DEBAJO DEL BLOC DE NOTAS) -->
+          <section class="panel panel-ocr-simple" style="margin-top: 1rem;">
+            <div class="panel-header notes-header">
+              <h2>📷 Escáner OCR de Recortes</h2>
+              <span class="notes-hint">Pega con Ctrl + V</span>
+            </div>
+            <div class="notes-body" style="display:flex; flex-direction:column; gap:0.6rem;">
+              <div id="dropzoneOCR" class="dropzone-simple active" onclick="document.getElementById('fileInputOCR').click()" style="border:2px dashed var(--border); border-radius:8px; padding:1rem; text-align:center; background:#0f172a; cursor:pointer;">
+                <span style="font-size:0.8rem; color:var(--text-muted);">Pega tu foto aquí con <code style="color:#f472b6;">Ctrl + V</code> o haz clic para seleccionar</span>
+                <input type="file" id="fileInputOCR" accept="image/*" style="display:none;" />
+              </div>
+
+              <div id="cropperWrapperOCR" class="cropper-wrapper-simple hidden" style="max-height:220px; background:#000; border-radius:8px; overflow:hidden;">
+                <img id="imageToCropOCR" src="" alt="Recorte" style="max-width:100%; display:block;" />
+              </div>
+
+              <div id="cropperToolbarOCR" class="cropper-toolbar-simple hidden" style="display:flex; gap:0.4rem;">
+                <button type="button" id="btnResetCropOCR" class="btn-sm-danger" style="padding:4px 8px;" title="Reiniciar"><i class="fa-solid fa-rotate-left"></i></button>
+                <button type="button" id="btnExtractTextOCR" class="btn-sm-primary" style="flex:1;"><i class="fa-solid fa-bolt"></i> Escanear Recorte</button>
+              </div>
+
+              <textarea id="ocrOutputSimple" class="notes-ta" rows="3" readonly placeholder="El texto escaneado de tu recorte aparecerá aquí..."></textarea>
+              
+              <button type="button" id="btnCopyOCRText" class="btn-copy-mac" onclick="copyOCRResultText()" style="justify-content:center; width:100%; padding:8px;">📋 Copiar Texto Escaneado</button>
+            </div>
+          </section>
         </div>
 
         <!-- ┌── COLUMNA 3: HERRAMIENTAS RÁPIDAS ──┐ -->
@@ -477,12 +507,14 @@
 
       </div>
     </main>
-  </div>
-
   <footer class="app-footer">
     <p>Hecho por Angel Llamacponcca</p>
   </footer>
 
+  <!-- Scripts -->
   <script src="app.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/tesseract.js@4/dist/tesseract.min.js"></script>
+  <script src="ocr-extension.js"></script>
 </body>
 </html>
