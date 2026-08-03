@@ -27,7 +27,12 @@
         </div>
         <div class="app-title">Generador de plantillas</div>
       </div>
-      <div class="header-badge">Mesa Multiskill HITSS</div>
+      <div style="display:flex; align-items:center; gap:0.6rem;">
+        <div class="header-badge">Mesa Multiskill HITSS</div>
+        <button type="button" id="btnHeaderProfile" onclick="openUserProfileModal()" style="padding:4px 10px; font-size:0.75rem; font-weight:700; color:#38bdf8; border:1px solid rgba(56,189,248,0.3); background:rgba(56,189,248,0.1); border-radius:6px; cursor:pointer;" title="Configurar Usuario E y Nombre Completo">
+          👤 <span id="hdrUserName">Configurar Asesor</span>
+        </button>
+      </div>
     </div>
   </header>
 
@@ -179,6 +184,7 @@
                       <option value="traslado_externo">Traslado Externo</option>
                       <option value="reenvio_senal">Reenvío de Señal</option>
                       <option value="activacion_mesh">Activación Mesh</option>
+                      <option value="activacion_plume">Activación Plume</option>
                     </optgroup>
                     <optgroup label="Equipos">
                       <option value="codigo_autorizacion">Código Autorización</option>
@@ -204,15 +210,13 @@
                 </div>
               </div>
 
-              <!-- N° TICKET (siempre visible) -->
+              <!-- N° TICKET -->
               <div class="field-group" id="bloqueNTicket">
                 <label class="field-label" for="nTicket">N° de Ticket</label>
                 <input type="text" id="nTicket" placeholder="Ej. 123456789" />
               </div>
 
-              <!-- ═══ BLOQUES ESTÁNDAR ═══ -->
-
-              <!-- Equipo Principal (no-mesh) -->
+              <!-- Equipo Principal -->
               <div id="bloqueEquipoPrincipal" class="eq-block main-eq hidden">
                 <div class="block-row">
                   <span class="blk-label" id="equipoPrincipalLabel">EQUIPO ACTIVADO</span>
@@ -252,45 +256,46 @@
                   <input type="text" id="repetidorActivado" placeholder="Ej. REPETIDOR MESH" />
                 </div>
                 <div class="field-group inner">
-                  <label class="field-label">Modelo</label>
+                  <label class="field-label">Modelo Repetidor</label>
                   <div class="sel-wrap">
                     <select id="modeloRepetidor" onchange="onModeloRepetidorChange()">
                       <option value="">— Selecciona modelo —</option>
                       <option value="REPETIDOR ZXHN H3601P 180000528400 ZTE">REPETIDOR ZXHN H3601P 180000528400 ZTE</option>
                       <option value="ROUTER K562E-10 50087708 HUAWEI">ROUTER K562E-10 50087708 HUAWEI</option>
-                      <option value="__manual__">✏️ Escribir manualmente…</option>
+                      <option value="__manual__">Otro / Escribir manualmente…</option>
                     </select>
                     <span class="sel-arrow">▾</span>
                   </div>
                   <input type="text" id="modeloRepetidorManual" class="hidden"
-                         placeholder="Escribe el modelo manualmente…"
+                         placeholder="Escribe modelo del repetidor…"
                          style="margin-top:0.4rem" autocomplete="off" />
                 </div>
               </div>
 
-              <!-- Equipos adicionales -->
+              <!-- Equipos Adicionales -->
               <div id="equiposAdicionales"></div>
 
-              <!-- Botones agregar -->
               <div id="botonesAgregar" class="add-btns hidden">
-                <p class="add-btns-lbl">Agregar sección adicional</p>
                 <div class="add-btns-row">
-                  <button type="button" class="btn-add" onclick="agregarEquipoAdicional('deco')">Deco Activado</button>
-                  <button type="button" class="btn-add" onclick="agregarEquipoAdicional('repetidor')">Repetidor Activado</button>
+                  <button type="button" class="btn-add" onclick="agregarEquipoAdicional('deco')">+ Deco</button>
+                  <button type="button" class="btn-add" onclick="agregarEquipoAdicional('repetidor')">+ Repetidor</button>
                 </div>
               </div>
 
-              <!-- Estado / Conformidad -->
-              <div id="bloqueEstado" class="field-group hidden">
+              <!-- Formulario Dinámico -->
+              <div id="customFormArea" class="hidden"></div>
+
+              <!-- Estado -->
+              <div class="field-group" id="bloqueEstado">
                 <label class="field-label" id="labelEstado">Estado</label>
                 <div class="sel-wrap">
                   <select id="estado" onchange="onEstadoChange()">
-                    <option value="">— Selecciona opción —</option>
+                    <option value="">— Selecciona estado —</option>
                     <option value="ATENDIDA">ATENDIDA</option>
                     <option value="ATENDIDA SIN CONFORMIDAD">ATENDIDA SIN CONFORMIDAD</option>
                     <option value="PENDIENTE SE DERIVA A SISTEMAS">PENDIENTE SE DERIVA A SISTEMAS</option>
                     <option value="DENEGADA">DENEGADA</option>
-                    <option value="__manual__">Escribir manualmente…</option>
+                    <option value="__manual__">Otro / Escribir manualmente…</option>
                   </select>
                   <span class="sel-arrow">▾</span>
                 </div>
@@ -300,18 +305,15 @@
               </div>
 
               <!-- Observaciones -->
-              <div id="bloqueObs" class="field-group hidden">
+              <div class="field-group" id="bloqueObs">
                 <label class="field-label" for="observaciones">Observaciones</label>
-                <textarea id="observaciones" rows="3" placeholder="Detalles adicionales, incidencias, notas…"></textarea>
+                <textarea id="observaciones" rows="2" placeholder="Observaciones adicionales..."></textarea>
               </div>
-
-              <!-- ═══ FORM ESPECIAL (renderizado por JS) ═══ -->
-              <div id="customFormArea" class="hidden"></div>
 
               <!-- Realizado por (siempre visible tras selección) -->
               <div id="bloqueRealizadoPor" class="field-group hidden">
                 <label class="field-label" for="realizadoPor">Realizado por</label>
-                <input type="text" id="realizadoPor" value="ANGEL LLAMACPONCCA" />
+                <input type="text" id="realizadoPor" value="" placeholder="Ej. NOMBRE Y APELLIDO" />
               </div>
 
               <!-- Acciones -->
@@ -329,13 +331,12 @@
                   Limpiar
                 </button>
               </div>
-
             </form>
           </section>
         </div>
 
         <!-- ┌── COLUMNA 2: PLANTILLA GENERADA & BLOC DE NOTAS ──┐ -->
-        <div class="col-center">
+        <div class="col-mid">
           <!-- PREVIEW -->
           <section class="panel panel-preview">
             <div class="panel-header">
@@ -385,9 +386,13 @@
                 <img id="imageToCropOCR" src="" alt="Recorte" style="max-width:100%; display:block;" />
               </div>
 
-              <div id="cropperToolbarOCR" class="cropper-toolbar-simple hidden" style="display:flex; gap:0.4rem;">
+              <div id="cropperToolbarOCR" class="cropper-toolbar-simple hidden" style="display:flex; gap:0.35rem; flex-wrap:wrap;">
+                <button type="button" id="btnMoveModeOCR" class="btn-sm-primary" style="padding:4px 8px; font-size:0.75rem;" title="Mover y Zoom de Imagen">🖐️ Mover</button>
+                <button type="button" id="btnCropModeOCR" class="btn-sm-secondary" style="padding:4px 8px; font-size:0.75rem;" title="Subrayar / Seleccionar Zona">✂️ Subrayar</button>
+                <button type="button" id="btnZoomInOCR" class="btn-sm-secondary" style="padding:4px 8px;" title="Acercar">🔍+</button>
+                <button type="button" id="btnZoomOutOCR" class="btn-sm-secondary" style="padding:4px 8px;" title="Alejar">🔍-</button>
                 <button type="button" id="btnResetCropOCR" class="btn-sm-danger" style="padding:4px 8px;" title="Reiniciar"><i class="fa-solid fa-rotate-left"></i></button>
-                <button type="button" id="btnExtractTextOCR" class="btn-sm-primary" style="flex:1;"><i class="fa-solid fa-bolt"></i> Escanear Recorte</button>
+                <button type="button" id="btnExtractTextOCR" class="btn-sm-primary" style="flex:1; min-width:110px;"><i class="fa-solid fa-bolt"></i> Escanear Recorte</button>
               </div>
 
               <textarea id="ocrOutputSimple" class="notes-ta" rows="3" readonly placeholder="El texto escaneado de tu recorte aparecerá aquí..."></textarea>
@@ -397,9 +402,8 @@
           </section>
         </div>
 
-        <!-- ┌── COLUMNA 3: HERRAMIENTAS RÁPIDAS ──┐ -->
+        <!-- ┌── COLUMNA 3: HERRAMIENTAS ──┐ -->
         <div class="col-right">
-          <!-- GENERADOR DE CÓDIGOS -->
           <section class="panel panel-codes">
             <div class="panel-header codes-header">
               <h2>🔑 Generador de Códigos (A/B)</h2>
@@ -507,6 +511,39 @@
 
       </div>
     </main>
+  <!-- ═══ MODAL CONFIGURACIÓN DE USUARIO (SOLICITUD INICIAL) ═══ -->
+  <div id="userProfileModal" class="ocr-modal-backdrop hidden" style="position:fixed; inset:0; background:rgba(0,0,0,0.8); z-index:9999; display:flex; align-items:center; justify-content:center; backdrop-filter:blur(5px);">
+    <div style="background:#1e293b; border:1px solid var(--border); border-radius:12px; width:90%; max-width:400px; padding:1.5rem; box-shadow:0 20px 25px -5px rgba(0,0,0,0.6); color:#f8fafc;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem; border-bottom:1px solid var(--border); padding-bottom:0.75rem;">
+        <h3 style="margin:0; font-size:1.1rem; color:#38bdf8; display:flex; align-items:center; gap:0.5rem;">
+          👤 Configura tus Datos de Asesor
+        </h3>
+        <button type="button" onclick="closeUserProfileModal()" style="background:none; border:none; color:var(--text-muted); font-size:1.2rem; cursor:pointer;">✕</button>
+      </div>
+
+      <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:1rem; line-height:1.4;">
+        Bienvenido. Por favor ingresa tu <strong>Nombre Completo</strong> y tu <strong>Usuario E</strong>. Tus plantillas y códigos generados se completarán automáticamente con estos datos.
+      </p>
+
+      <form onsubmit="saveUserProfile(event)">
+        <div class="field-group" style="margin-bottom:1rem;">
+          <label class="field-label" for="profNombre">Nombre Completo</label>
+          <input type="text" id="profNombre" placeholder="Ej. ANGEL LLAMACPONCCA" required style="text-transform:uppercase;" />
+        </div>
+
+        <div class="field-group" style="margin-bottom:1.2rem;">
+          <label class="field-label" for="profUserE">Usuario E (Cuenta E)</label>
+          <input type="text" id="profUserE" placeholder="Ej. E758975" maxlength="7" required style="text-transform:uppercase;" />
+        </div>
+
+        <div style="display:flex; gap:0.5rem; justify-content:flex-end;">
+          <button type="button" class="btn-secondary" onclick="closeUserProfileModal()">Cancelar</button>
+          <button type="submit" class="btn-primary" style="padding:8px 16px;">💾 Guardar Datos</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
   <footer class="app-footer">
     <p>Hecho por Angel Llamacponcca</p>
   </footer>

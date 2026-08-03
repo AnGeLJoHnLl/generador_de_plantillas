@@ -1,6 +1,7 @@
 /* ──────────────────────────────────────────────
-   HITSS Tickets — Módulo OCR Simple (Debajo de Notas Rápidas)
-   Escanea únicamente el área recortada sin clasificaciones ni tarjetas.
+   HITSS Tickets — Módulo OCR Simple
+   Mantiene el motor OCR al 100% exacto y funcional
+   con controles de Mover y Subrayar sin alterar la lectura.
    ────────────────────────────────────────────── */
 
 let cropperSimple = null;
@@ -13,14 +14,14 @@ function initOCRSimpleListeners() {
     const fileInput = document.getElementById('fileInputOCR');
     if (fileInput) fileInput.addEventListener('change', handleFileSelectOCR);
 
-    // Global Ctrl + V paste listener
+    // Pegado global Ctrl + V
     window.addEventListener('paste', (e) => {
         const items = (e.clipboardData || e.originalEvent.clipboardData).items;
         for (const item of items) {
             if (item.type.indexOf('image') === 0) {
                 const blob = item.getAsFile();
                 loadImageBlobOCR(blob);
-                if (typeof showToast === 'function') showToast('¡Imagen cargada en el Escáner!');
+                if (typeof showToast === 'function') showToast('¡Imagen cargada!');
                 break;
             }
         }
@@ -28,6 +29,18 @@ function initOCRSimpleListeners() {
 
     const btnReset = document.getElementById('btnResetCropOCR');
     if (btnReset) btnReset.addEventListener('click', () => cropperSimple && cropperSimple.reset());
+
+    const btnMove = document.getElementById('btnMoveModeOCR');
+    if (btnMove) btnMove.addEventListener('click', setMoveModeOCR);
+
+    const btnCrop = document.getElementById('btnCropModeOCR');
+    if (btnCrop) btnCrop.addEventListener('click', setCropModeOCR);
+
+    const btnZoomIn = document.getElementById('btnZoomInOCR');
+    if (btnZoomIn) btnZoomIn.addEventListener('click', () => cropperSimple && cropperSimple.zoom(0.15));
+
+    const btnZoomOut = document.getElementById('btnZoomOutOCR');
+    if (btnZoomOut) btnZoomOut.addEventListener('click', () => cropperSimple && cropperSimple.zoom(-0.15));
 
     const btnScan = document.getElementById('btnExtractTextOCR');
     if (btnScan) btnScan.addEventListener('click', processOCRSimple);
@@ -60,11 +73,15 @@ function initCropperOCR(imageSrc) {
     if (cropperSimple) cropperSimple.destroy();
 
     img.src = imageSrc;
+    // Configuración robusta original de Cropper (autoCropArea: 0.95)
     cropperSimple = new Cropper(img, {
         viewMode: 1,
+        dragMode: 'crop',
         autoCropArea: 0.95,
         responsive: true,
         background: false,
+        zoomOnWheel: true,
+        toggleDragModeOnDblclick: true,
         ready() {
             const btnScan = document.getElementById('btnExtractTextOCR');
             if (btnScan) btnScan.disabled = false;
@@ -72,7 +89,26 @@ function initCropperOCR(imageSrc) {
     });
 }
 
-// Cloud OCR Engine 2 High Precision
+function setMoveModeOCR() {
+    if (!cropperSimple) return;
+    cropperSimple.setDragMode('move');
+    const bMove = document.getElementById('btnMoveModeOCR');
+    const bCrop = document.getElementById('btnCropModeOCR');
+    if (bMove) { bMove.style.background = 'var(--accent)'; bMove.style.color = '#fff'; }
+    if (bCrop) { bCrop.style.background = 'rgba(255,255,255,0.08)'; bCrop.style.color = 'var(--text-secondary)'; }
+}
+
+function setCropModeOCR() {
+    if (!cropperSimple) return;
+    cropperSimple.setDragMode('crop');
+    cropperSimple.crop();
+    const bMove = document.getElementById('btnMoveModeOCR');
+    const bCrop = document.getElementById('btnCropModeOCR');
+    if (bCrop) { bCrop.style.background = '#ec4899'; bCrop.style.color = '#fff'; }
+    if (bMove) { bMove.style.background = 'rgba(255,255,255,0.08)'; bMove.style.color = 'var(--text-secondary)'; }
+}
+
+// Motor Cloud Engine 2 (Alta Precisión)
 async function processCloudOCRSimple(croppedCanvas) {
     const dataUrl = croppedCanvas.toDataURL('image/png');
     const formData = new FormData();
@@ -91,8 +127,18 @@ async function processCloudOCRSimple(croppedCanvas) {
 
 async function processOCRSimple() {
     if (!cropperSimple) return;
-    const croppedCanvas = cropperSimple.getCroppedCanvas();
-    if (!croppedCanvas) return;
+    
+    // Obtener canvas del recorte; si por alguna razón es nulo, se genera del cropper completo
+    let croppedCanvas = cropperSimple.getCroppedCanvas();
+    if (!croppedCanvas) {
+        cropperSimple.crop();
+        croppedCanvas = cropperSimple.getCroppedCanvas();
+    }
+    
+    if (!croppedCanvas) {
+        alert('No se pudo obtener el recuadro de la imagen.');
+        return;
+    }
 
     const btnScan = document.getElementById('btnExtractTextOCR');
     const output = document.getElementById('ocrOutputSimple');
@@ -107,7 +153,7 @@ async function processOCRSimple() {
         try {
             rawText = await processCloudOCRSimple(croppedCanvas);
         } catch (cloudErr) {
-            console.warn('Fallback local:', cloudErr);
+            console.warn('Fallback local Tesseract:', cloudErr);
             const blob = await new Promise(r => croppedCanvas.toBlob(r, 'image/png'));
             const worker = await Tesseract.createWorker();
             await worker.loadLanguage('eng');
@@ -117,7 +163,7 @@ async function processOCRSimple() {
             rawText = res.data.text;
         }
 
-        const cleanedText = rawText.trim();
+        const cleanedText = (rawText || '').trim();
         if (output) output.value = cleanedText;
 
         if (cleanedText.length > 0) {
@@ -132,7 +178,7 @@ async function processOCRSimple() {
     } finally {
         if (btnScan) {
             btnScan.disabled = false;
-            btnScan.innerHTML = '<i class="fa-solid fa-bolt"></i> Escanear Recorte';
+            btnScan.innerHTML = '<i class="fa-solid fa-bolt"></i> Escanear';
         }
     }
 }
